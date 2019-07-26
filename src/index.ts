@@ -3,7 +3,7 @@ import express from "express";
 import { ILicensePlate, MinisterCrawler, Status} from "./opposition/crawler";
 
 const app = express();
-const port = 8080 || process.env.PORT;
+const port =  process.env.PORT || 5000;
 
 const crawler = new MinisterCrawler();
 
