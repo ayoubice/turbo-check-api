@@ -3,12 +3,13 @@ import express from "express";
 import { ILicensePlate, MinisterCrawler, Status} from "./opposition/crawler";
 
 const app = express();
-const port =  process.env.PORT || 5000;
+const port =  process.env.PORT || 5000
 
 const crawler = new MinisterCrawler();
 
 const parseLicenseFrom = (license: string): ILicensePlate => {
   const parts = license.replace('"', "").split("-");
+
   if (parts.length === 3 && !parts.some(((elm) => (elm == null || elm === ""))) ) {
     return {
       RegionKey1: parts[1],
@@ -22,15 +23,14 @@ const parseLicenseFrom = (license: string): ILicensePlate => {
 
 app.get("/api/v1/car/status", async (req, res) => {
   const licenseParam = req.query.license;
-  const license = parseLicenseFrom(licenseParam);
-
-  if (!license) {
+  if (!licenseParam) {
     res.status(400);
     return res.json({
       error: "license plate format is incorrect",
     });
   }
 
+  const license = parseLicenseFrom(licenseParam);
   const result = await crawler.getVehiculeStatus(license);
 
   res.json({
