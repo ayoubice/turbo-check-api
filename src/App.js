@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import {
+ Box,
+ Heading,
+ TextInput,
+ Button,
+ Grommet,
+ ResponsiveContext,
+} from 'grommet';
+
+
+
+const theme = {
+  global: {
+    font: {
+      family: 'Roboto',
+      size: '14px',
+      height: '20px',
+    },
+  },
+};
+
+const Main = (props) => (
+  <Box fill 
+    direction="column"
+    background='brand'
+     align="center"
+     justify="center"
+
+  >
+    <Box
+      // wrap="true"
+    >
+      <Heading margin="none"> Vehicule checker </Heading>
+      <TextInput
+        id="text-input"
+        placeholder="placeholder"
+        value="Some value"
+      />
+    </Box>
+ </Box>
+)
+
+class App extends Component {
+ state = {
+   showSidebar: false,
+ }
+
+ render(){
+    return (
+      <Grommet theme={theme} full>
+        <ResponsiveContext.Consumer>
+          {size => (
+            <Main />
+          )}
+        </ResponsiveContext.Consumer>
+  </Grommet>
+    );
+  }
 }
 
 export default App;
