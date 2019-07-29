@@ -1,16 +1,13 @@
-import React, {Component} from 'react';
-
+import React, {Component} from 'react'
 
 import {
  Box,
  Heading,
- TextInput,
- Button,
  Grommet,
  ResponsiveContext,
 } from 'grommet';
 
-
+import CheckerForm from './form'
 
 const theme = {
   global: {
@@ -26,21 +23,14 @@ const Main = (props) => (
   <Box fill 
     direction="column"
     background='brand'
-     align="center"
-     justify="center"
-
+    align="center"
+    justify="center"
   >
-    <Box
-      // wrap="true"
-    >
+    <Box pad="large">
       <Heading margin="none"> Vehicule checker </Heading>
-      <TextInput
-        id="text-input"
-        placeholder="placeholder"
-        value="Some value"
-      />
+      <CheckerForm/>
     </Box>
- </Box>
+  </Box>
 )
 
 class App extends Component {
